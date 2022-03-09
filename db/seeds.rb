@@ -1,4 +1,5 @@
 puts "Clearing old data..."
+Subscription.destroy_all
 Magazine.destroy_all
 Reader.destroy_all
 
@@ -17,17 +18,16 @@ end
 
 puts "Seeding subscriptions..."
 # Create 20 random subscriptions
-20.times do
-  # Get a reader instance:
-  reader_id = Reader.ids.sample
-  # Get a magazine instance:
-  magazine_id = Magazine.ids.sample
-  # Get a random price between 10 and 100:
-  price = rand(10..100)
+# Subscription.create(reader_id: Reader.first.id, magazine_id: Magazine.first.id, price: rand(5..100))
+# Subscription.create(reader_id: Reader.first.id, magazine_id: Magazine.second.id, price: rand(5..100))
+# Subscription.create(reader_id: Reader.second.id, magazine_id: Magazine.first.id, price: rand(5..100))
+# Subscription.create(reader_id: Reader.first.id, magazine_id: Magazine.third.id, price: rand(5..100))
+# Subscription.create(reader_id: Reader.third.id, magazine_id: Magazine.third.id, price: rand(5..100))
 
-  # TODO: create subscriptions! Remember, a subscription belongs to a reader
-  # and a subscription belongs to a magazine.
-  
-end
+50.times do 
+  Subscription.create(reader_id: Reader.all.sample.id, magazine_id: Magazine.all.sample.id, price: rand(5..100))
+end 
+
+
 
 puts "Done!"
